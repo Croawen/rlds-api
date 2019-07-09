@@ -1,13 +1,15 @@
 import { ApiModelPropertyOptional } from '@nestjs/swagger';
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsOptional } from 'class-validator';
 
 export class PagerRequestDto {
   @ApiModelPropertyOptional()
   @IsNumber()
-  pageNumber: number;
+  @IsOptional()
+  pageNumber?: number;
   @ApiModelPropertyOptional()
   @IsNumber()
-  pageSize: number;
+  @IsOptional()
+  pageSize?: number;
 
   constructor(pageNumber?: any, pageSize?: any) {
     this.pageNumber = pageNumber ? parseInt(pageNumber, 10) : 0;
