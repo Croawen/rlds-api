@@ -3,11 +3,9 @@ import { IsNumber, IsOptional } from 'class-validator';
 
 export class PagerRequestDto {
   @ApiModelPropertyOptional()
-  @IsNumber()
   @IsOptional()
   pageNumber?: number;
   @ApiModelPropertyOptional()
-  @IsNumber()
   @IsOptional()
   pageSize?: number;
 
