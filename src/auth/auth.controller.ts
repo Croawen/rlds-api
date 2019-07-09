@@ -29,6 +29,7 @@ export class AuthController {
   @ApiOkResponse({ type: LoginResponseDto })
   @ApiBadRequestResponse({ description: 'Invalid data provided.' })
   @ApiNotFoundResponse({ description: 'User not found.' })
+  @ApiResponse({ status: 460, description: 'Token expired.' })
   async refresh(@Body() dto: RefreshRequestDto): Promise<LoginResponseDto> {
     return this.authService.refresh(dto);
   }

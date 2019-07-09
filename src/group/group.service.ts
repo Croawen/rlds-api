@@ -70,6 +70,7 @@ export class GroupService extends BaseService<Group> {
       _id: new ObjectId(groupId),
       user: new ObjectId(userId),
       isDeleted: false,
+      editable: true,
     });
 
     if (!group)

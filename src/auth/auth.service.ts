@@ -3,6 +3,7 @@ import {
   Inject,
   NotFoundException,
   BadRequestException,
+  HttpException,
 } from '@nestjs/common';
 import {
   LoginRequestDto,
@@ -45,16 +46,20 @@ export class AuthService {
   }
 
   async refresh(dto: RefreshRequestDto): Promise<LoginResponseDto> {
-    const decodedUser = verify(dto.token, this.jwtKey) as IUserPayload;
-    if (!decodedUser) throw new BadRequestException('Invalid token.');
-    const user = await this.userService.model.findOne({
-      _id: new ObjectId(decodedUser.id),
-    });
+    try {
+      const decodedUser = verify(dto.token, this.jwtKey) as IUserPayload;
+      if (!decodedUser) throw new BadRequestException('Invalid token.');
+      const user = await this.userService.model.findOne({
+        _id: new ObjectId(decodedUser.id),
+      });
 
-    if (!user) throw new NotFoundException('User not found.');
+      if (!user) throw new NotFoundException('User not found.');
 
-    const token = await this.createToken(user.id, user.login);
-    return new LoginResponseDto(token);
+      const token = await this.createToken(user.id, user.login);
+      return new LoginResponseDto(token);
+    } catch (e) {
+      throw new HttpException('Token expired.', 460);
+    }
   }
 
   private async createToken(id: string, login: string): Promise<TokenDto> {

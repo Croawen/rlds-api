@@ -11,6 +11,9 @@ export class Group extends Typegoose {
   @prop({ default: '' })
   description: string;
 
+  @prop({ default: true })
+  editable: boolean;
+
   @prop({ required: true, ref: User })
   user: Ref<User>;
 
