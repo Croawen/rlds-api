@@ -4,6 +4,9 @@ import { Currency } from '../../common/currencies';
 
 export class AccountListItemDto {
   @ApiResponseModelProperty()
+  id: string;
+
+  @ApiResponseModelProperty()
   name: string;
 
   @ApiResponseModelProperty()
@@ -16,6 +19,7 @@ export class AccountListItemDto {
   currency: Currency;
 
   constructor(entity: Account) {
+    this.id = entity._id.toHexString();
     this.name = entity.name;
     this.description = entity.description;
     this.balance = entity.balance;

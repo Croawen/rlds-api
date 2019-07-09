@@ -5,6 +5,9 @@ import { Account } from '../../account/model/account.model';
 
 export class TransactionListItemDto {
   @ApiResponseModelProperty()
+  id: string;
+
+  @ApiResponseModelProperty()
   title: string;
 
   @ApiResponseModelProperty({ type: String })
@@ -26,6 +29,7 @@ export class TransactionListItemDto {
   targetChange: number;
 
   constructor(entity: Transaction) {
+    this.id = entity._id.toHexString();
     this.title = entity.title;
     this.type = entity.type;
     this.createdAt = entity.createdAt;
