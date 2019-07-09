@@ -1,5 +1,13 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsMongoId, IsEnum } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsMongoId,
+  IsEnum,
+  IsNumber,
+  Max,
+  Min,
+} from 'class-validator';
 import { Currency } from '../../common/currencies';
 
 export class CreateAccountDto {
@@ -19,4 +27,10 @@ export class CreateAccountDto {
   @ApiModelProperty({ enum: Object.values(Currency) })
   @IsEnum(Currency)
   currency: Currency;
+
+  @ApiModelProperty()
+  @IsNumber({ allowInfinity: false, allowNaN: false })
+  @Min(0)
+  @Max(99999)
+  balance: number;
 }

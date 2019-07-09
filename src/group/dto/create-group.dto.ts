@@ -6,4 +6,8 @@ export class CreateGroupDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+
+  @ApiModelProperty()
+  @IsString()
+  description: string;
 }

@@ -8,6 +8,9 @@ export class Group extends Typegoose {
   @prop({ required: true })
   name: string;
 
+  @prop({ required: true })
+  description: string;
+
   @prop({ required: true, ref: User })
   user: Ref<User>;
 

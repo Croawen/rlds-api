@@ -1,14 +1,18 @@
-import { Injectable, HttpException } from '@nestjs/common';
+import { Injectable, HttpException, Inject } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { ModelType } from 'typegoose';
 import { User } from './model/user.model';
 import { BaseService } from '../common/base.service';
 import { RegisterRequestDto } from './dto';
 import * as sha256 from 'sha256';
+import { GroupService } from '../group/group.service';
 
 @Injectable()
 export class UserService extends BaseService<User> {
-  constructor(@InjectModel(User) userModel: ModelType<User>) {
+  constructor(
+    @InjectModel(User) userModel: ModelType<User>,
+    @Inject(GroupService) private readonly groupService: GroupService,
+  ) {
     super(userModel);
   }
 
@@ -24,5 +28,12 @@ export class UserService extends BaseService<User> {
       passwordHash: sha256(dto.password),
     });
     await user.save();
+
+    const defaultGroup = new this.groupService.model({
+      user: user._id,
+      name: 'default',
+      description: '',
+    });
+    await defaultGroup.save();
   }
 }

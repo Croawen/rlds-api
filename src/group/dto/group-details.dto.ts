@@ -10,5 +10,6 @@ export class GroupDetailsDto {
 
   constructor(entity: Group) {
     this.name = entity.name;
+    this.description = entity.description;
   }
 }
