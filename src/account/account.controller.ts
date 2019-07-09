@@ -84,7 +84,6 @@ export class AccountController {
     @CurrentUser() user: IUserPayload,
     @Query(new ParsePagerRequestPipe()) query: PagerRequestDto,
   ): Promise<AccountListDto> {
-    console.log(user);
     return this.accountService.getAccounts(user.id, query);
   }
 

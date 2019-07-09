@@ -63,12 +63,6 @@ export class AuthService {
       login,
     };
     const accessToken = await this.signPayload(payload);
-    console.log(
-      new Date(),
-      +new Date(),
-      verify(accessToken, this.jwtKey),
-      this.jwtOptions.expiresIn,
-    );
     return new TokenDto(
       accessToken,
       new Date(

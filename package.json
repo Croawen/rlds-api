@@ -5,9 +5,8 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/main.js",
-    "prestart:prod": "rimraf dist && tsc -p tsconfig.json",
-    "webpack": "webpack --config webpack.config.js"
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start:dev": "nodemon"
   },
   "dependencies": {
     "@nestjs/common": "^6.4.1",
@@ -46,9 +45,6 @@
     "ts-loader": "^6.0.4",
     "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
-    "tslint": "5.18.0",
-    "webpack": "^4.35.2",
-    "webpack-cli": "^3.3.5",
-    "webpack-node-externals": "^1.7.2"
+    "tslint": "5.18.0"
   }
 }
