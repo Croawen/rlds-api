@@ -51,10 +51,15 @@ export class AccountService extends BaseService<Account> {
     userId: string,
     pagerReq: PagerRequestDto,
   ): Promise<AccountListDto> {
-    const res = await this.getPaged(pagerReq, {
-      user: new ObjectId(userId),
-      isDeleted: false,
-    });
+    const res = await this.getPaged(
+      pagerReq,
+      {
+        user: new ObjectId(userId),
+        isDeleted: false,
+      },
+      {},
+      'group',
+    );
     return new AccountListDto(
       res.items,
       res.totalItems,
