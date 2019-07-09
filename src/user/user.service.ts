@@ -32,7 +32,6 @@ export class UserService extends BaseService<User> {
     const defaultGroup = new this.groupService.model({
       user: user._id,
       name: 'Default',
-      description: '',
     });
     await defaultGroup.save();
   }
