@@ -1,7 +1,7 @@
-import { PagerResponseDto } from 'common/pager';
 import { ApiResponseModelProperty } from '@nestjs/swagger';
-import { Group } from 'group/model/group.model';
 import { GroupListItemDto } from '../dto';
+import { Group } from '../model/group.model';
+import { PagerResponseDto } from '../../common/pager';
 
 export class GroupListDto {
   @ApiResponseModelProperty()

@@ -1,5 +1,5 @@
 import { ApiResponseModelProperty } from '@nestjs/swagger';
-import { Account } from 'account/model/account.model';
+import { Account } from '../model/account.model';
 
 export class AccountDetailsDto {
   @ApiResponseModelProperty()

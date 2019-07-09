@@ -6,7 +6,7 @@ import {
   IsEnum,
   ValidateIf,
 } from 'class-validator';
-import { TransactionType } from 'transaction/enums/transaction-type.enum';
+import { TransactionType } from '../enums/transaction-type.enum';
 
 export class CreateTransactionDto {
   @ApiModelProperty()

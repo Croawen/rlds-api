@@ -1,8 +1,8 @@
 import { Typegoose, prop, Ref } from 'typegoose';
 import { ObjectId } from 'bson';
-import { User } from 'user/model/user.model';
-import { Group } from 'group/model/group.model';
-import { Currency } from 'common/currencies/currency.enum';
+import { Currency } from '../../common/currencies';
+import { User } from '../../user/model/user.model';
+import { Group } from '../../group/model/group.model';
 
 export class Account extends Typegoose {
   _id: ObjectId;

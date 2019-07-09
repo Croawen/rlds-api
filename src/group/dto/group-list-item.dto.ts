@@ -1,5 +1,5 @@
 import { ApiResponseModelProperty } from '@nestjs/swagger';
-import { Group } from 'group/model/group.model';
+import { Group } from '../model/group.model';
 
 export class GroupListItemDto {
   @ApiResponseModelProperty()

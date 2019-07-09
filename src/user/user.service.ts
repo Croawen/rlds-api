@@ -2,7 +2,7 @@ import { Injectable, HttpException } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { ModelType } from 'typegoose';
 import { User } from './model/user.model';
-import { BaseService } from 'common/base.service';
+import { BaseService } from '../common/base.service';
 import { RegisterRequestDto } from './dto';
 import * as sha256 from 'sha256';
 

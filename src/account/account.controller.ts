@@ -22,10 +22,10 @@ import {
 } from '@nestjs/common';
 import { AccountService } from './account.service';
 import { CreateAccountDto, AccountListDto, AccountDetailsDto } from './dto';
-import { CurrentUser } from 'auth/decorators/current-user.decorator';
-import { IUserPayload } from 'auth/interfaces/user.payload';
-import { ParsePagerRequestPipe, PagerRequestDto } from 'common/pager';
-import { JwtGuard } from 'auth/guards/jwt.guard';
+import { JwtGuard } from '../auth/guards/jwt.guard';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { IUserPayload } from '../auth/interfaces/user.payload';
+import { ParsePagerRequestPipe, PagerRequestDto } from '../common/pager';
 
 @Controller('accounts')
 @ApiUseTags('Accounts')

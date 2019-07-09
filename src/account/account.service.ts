@@ -1,11 +1,11 @@
 import { Injectable, HttpException, NotFoundException } from '@nestjs/common';
-import { BaseService } from 'common/base.service';
 import { Account } from './model/account.model';
 import { InjectModel } from 'nestjs-typegoose';
 import { ModelType, InstanceType } from 'typegoose';
 import { CreateAccountDto, AccountListDto, AccountDetailsDto } from './dto';
 import { ObjectId } from 'bson';
-import { PagerRequestDto } from 'common/pager';
+import { BaseService } from '../common/base.service';
+import { PagerRequestDto } from '../common/pager';
 
 @Injectable()
 export class AccountService extends BaseService<Account> {

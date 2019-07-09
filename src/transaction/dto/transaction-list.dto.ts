@@ -1,7 +1,7 @@
 import { TransactionListItemDto } from './transaction-list-item.dto';
-import { Transaction } from 'transaction/model/transaction.model';
 import { ApiResponseModelProperty } from '@nestjs/swagger';
-import { PagerResponseDto } from 'common/pager';
+import { PagerResponseDto } from '../../common/pager';
+import { Transaction } from '../model/transaction.model';
 
 export class TransactionListDto {
   @ApiResponseModelProperty()

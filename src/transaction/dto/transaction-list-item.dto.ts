@@ -1,7 +1,7 @@
 import { ApiResponseModelProperty } from '@nestjs/swagger';
-import { Transaction } from 'transaction/model/transaction.model';
-import { TransactionType } from 'transaction/enums/transaction-type.enum';
-import { Account } from 'account/model/account.model';
+import { TransactionType } from '../enums/transaction-type.enum';
+import { Transaction } from '../model/transaction.model';
+import { Account } from '../../account/model/account.model';
 
 export class TransactionListItemDto {
   @ApiResponseModelProperty()

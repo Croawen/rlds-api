@@ -1,6 +1,6 @@
 import { ApiResponseModelProperty } from '@nestjs/swagger';
-import { Account } from 'account/model/account.model';
-import { Currency } from 'common/currencies';
+import { Account } from '../model/account.model';
+import { Currency } from '../../common/currencies';
 
 export class AccountListItemDto {
   @ApiResponseModelProperty()

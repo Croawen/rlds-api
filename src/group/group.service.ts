@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException, HttpException } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { ModelType, InstanceType } from 'typegoose';
-import { BaseService } from 'common/base.service';
 import { Group } from './model/group.model';
 import { CreateGroupDto, GroupListDto, GroupDetailsDto } from './dto';
 import { ObjectId } from 'bson';
-import { PagerRequestDto } from 'common/pager';
+import { BaseService } from '../common/base.service';
+import { PagerRequestDto } from '../common/pager';
 
 @Injectable()
 export class GroupService extends BaseService<Group> {

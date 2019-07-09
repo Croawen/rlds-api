@@ -18,12 +18,11 @@ import {
   ApiCreatedResponse,
 } from '@nestjs/swagger';
 import { TransactionService } from './transaction.service';
-import { CreateTransactionDto } from './dto';
-import { ParsePagerRequestPipe, PagerRequestDto } from 'common/pager';
-import { IUserPayload } from 'auth/interfaces/user.payload';
-import { CurrentUser } from 'auth/decorators/current-user.decorator';
-import { JwtGuard } from 'auth/guards/jwt.guard';
-import { TransactionListDto } from './dto/transaction-list.dto';
+import { CreateTransactionDto, TransactionListDto } from './dto';
+import { JwtGuard } from '../auth/guards/jwt.guard';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { IUserPayload } from '../auth/interfaces/user.payload';
+import { ParsePagerRequestPipe, PagerRequestDto } from '../common/pager';
 
 @Controller('transactions')
 @ApiUseTags('Transactions')

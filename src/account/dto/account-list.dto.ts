@@ -1,7 +1,7 @@
-import { AccountListItemDto } from './account-list-item.dto';
-import { PagerResponseDto } from 'common/pager';
 import { ApiResponseModelProperty } from '@nestjs/swagger';
-import { Account } from 'account/model/account.model';
+import { Account } from '../model/account.model';
+import { AccountListItemDto } from './account-list-item.dto';
+import { PagerResponseDto } from '../../common/pager';
 
 export class AccountListDto {
   @ApiResponseModelProperty()

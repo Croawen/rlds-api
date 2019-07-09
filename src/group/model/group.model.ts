@@ -1,6 +1,6 @@
 import { Typegoose, prop, Ref } from 'typegoose';
 import { ObjectId } from 'bson';
-import { User } from 'user/model/user.model';
+import { User } from '../../user/model/user.model';
 
 export class Group extends Typegoose {
   _id: ObjectId;

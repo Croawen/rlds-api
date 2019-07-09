@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from 'auth/auth.module';
 import { TypegooseModule } from 'nestjs-typegoose';
-import { UserModule } from 'user/user.module';
-import { AccountModule } from 'account/account.module';
-import { TransactionModule } from 'transaction/transaction.module';
-import { GroupModule } from 'group/group.module';
-import { CommonModule } from 'common/common.module';
-import { ConfigService, Config } from 'common/config';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { AccountModule } from './account/account.module';
+import { TransactionModule } from './transaction/transaction.module';
+import { GroupModule } from './group/group.module';
+import { CommonModule } from './common/common.module';
+import { ConfigService, Config } from './common/config';
 
 @Module({
   imports: [

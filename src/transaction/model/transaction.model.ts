@@ -1,7 +1,7 @@
 import { ObjectId } from 'bson';
 import { prop, Typegoose, Ref } from 'typegoose';
-import { Account } from 'account/model/account.model';
-import { TransactionType } from 'transaction/enums/transaction-type.enum';
+import { TransactionType } from '../enums/transaction-type.enum';
+import { Account } from '../../account/model/account.model';
 
 export class Transaction extends Typegoose {
   _id: ObjectId;

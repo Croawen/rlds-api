@@ -10,12 +10,12 @@ import {
   RefreshRequestDto,
   TokenDto,
 } from './dto';
-import { UserService } from 'user/user.service';
 import { IUserPayload } from './interfaces/user.payload';
 import { SignOptions, sign, verify } from 'jsonwebtoken';
 import { ObjectId } from 'bson';
-import { ConfigService, Config } from 'common/config';
 import * as sha256 from 'sha256';
+import { ConfigService, Config } from '../common/config';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
