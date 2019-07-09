@@ -71,7 +71,7 @@ export class AuthService {
     return new TokenDto(
       accessToken,
       new Date(
-        Date.now() + this.configService.getNumber(Config.JWT_EXPIRES_IN),
+        Date.now() + this.configService.getNumber(Config.JWT_EXPIRES_IN) * 1000,
       ),
     );
   }
