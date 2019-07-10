@@ -14,15 +14,7 @@ export class GroupService extends BaseService<Group> {
   }
 
   async createGroup(userId: string, dto: CreateGroupDto): Promise<void> {
-    let group = await this.model.findOne({
-      name: dto.name,
-      user: new ObjectId(userId),
-    });
-
-    if (group)
-      throw new HttpException('Group with provided name already exists.', 460);
-
-    group = new this.model({
+    const group = new this.model({
       ...dto,
       user: new ObjectId(userId),
     });

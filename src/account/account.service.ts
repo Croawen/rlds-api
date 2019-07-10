@@ -6,6 +6,7 @@ import { CreateAccountDto, AccountListDto, AccountDetailsDto } from './dto';
 import { ObjectId } from 'bson';
 import { BaseService } from '../common/base.service';
 import { PagerRequestDto } from '../common/pager';
+import { EditAccountDto } from './dto/edit-account.dto';
 
 @Injectable()
 export class AccountService extends BaseService<Account> {
@@ -14,18 +15,7 @@ export class AccountService extends BaseService<Account> {
   }
 
   async createAccount(userId: string, dto: CreateAccountDto): Promise<void> {
-    let account = await this.model.findOne({
-      name: dto.name,
-      user: new ObjectId(userId),
-    });
-
-    if (account)
-      throw new HttpException(
-        'Account with provided name already exists.',
-        460,
-      );
-
-    account = new this.model({
+    const account = new this.model({
       ...dto,
       group: new ObjectId(dto.group),
       user: new ObjectId(userId),
@@ -34,8 +24,14 @@ export class AccountService extends BaseService<Account> {
     await account.save();
   }
 
-  async updateAccount(userId: string, accountId: string): Promise<void> {
+  async updateAccount(
+    userId: string,
+    accountId: string,
+    dto: EditAccountDto,
+  ): Promise<void> {
     const account = await this.getAccountEntity(userId, accountId);
+    account.name = dto.name;
+    account.description = dto.description;
 
     await account.save();
   }
@@ -67,9 +63,12 @@ export class AccountService extends BaseService<Account> {
     userId: string,
     accountId: string,
   ): Promise<AccountDetailsDto> {
-    const account = await this.getAccountEntity(userId, accountId);
+    const account = await (await this.getAccountEntity(
+      userId,
+      accountId,
+    )).populate('group');
 
-    return new AccountDetailsDto(account.populate('group'));
+    return new AccountDetailsDto(account);
   }
 
   private async getAccountEntity(

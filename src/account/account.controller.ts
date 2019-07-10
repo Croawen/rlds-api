@@ -26,6 +26,7 @@ import { JwtGuard } from '../auth/guards/jwt.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { IUserPayload } from '../auth/interfaces/user.payload';
 import { ParsePagerRequestPipe, PagerRequestDto } from '../common/pager';
+import { EditAccountDto } from './dto/edit-account.dto';
 
 @Controller('accounts')
 @ApiUseTags('Accounts')
@@ -59,8 +60,9 @@ export class AccountController {
   async update(
     @CurrentUser() user: IUserPayload,
     @Param('accountId') accountId: string,
+    @Body() dto: EditAccountDto,
   ): Promise<void> {
-    return this.accountService.updateAccount(user.id, accountId);
+    return this.accountService.updateAccount(user.id, accountId, dto);
   }
 
   @Delete(':accountId')
