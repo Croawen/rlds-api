@@ -63,10 +63,9 @@ export class AccountService extends BaseService<Account> {
     userId: string,
     accountId: string,
   ): Promise<AccountDetailsDto> {
-    const account = await (await this.getAccountEntity(
-      userId,
-      accountId,
-    )).populate('group');
+    const account = await (await this.getAccountEntity(userId, accountId))
+      .populate('group')
+      .execPopulate();
 
     return new AccountDetailsDto(account);
   }
