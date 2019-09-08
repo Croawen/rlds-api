@@ -187,10 +187,12 @@ export class TransactionService extends BaseService<Transaction> {
     userId: string,
     transactionId: string,
   ): Promise<TransactionDetailsDto> {
-    const transaction = await this.model.findOne({
-      user: new ObjectId(userId),
-      _id: new ObjectId(transactionId),
-    });
+    const transaction = await this.model
+      .findOne({
+        user: new ObjectId(userId),
+        _id: new ObjectId(transactionId),
+      })
+      .populate(['sourceAccount', 'targetAccount']);
 
     if (!transaction)
       throw new NotFoundException(
