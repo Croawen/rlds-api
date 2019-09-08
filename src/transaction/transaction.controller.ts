@@ -43,8 +43,11 @@ export class TransactionController {
   @ApiOperation({ title: 'Create a new transaction.' })
   @ApiCreatedResponse({ description: 'Transaction Created.' })
   @ApiBadRequestResponse({ description: 'Invalid data provided.' })
-  async createTransaction(@Body() dto: CreateTransactionDto): Promise<void> {
-    return this.transactionService.createTransaction(dto);
+  async createTransaction(
+    @CurrentUser() user: IUserPayload,
+    @Body() dto: CreateTransactionDto,
+  ): Promise<void> {
+    return this.transactionService.createTransaction(dto, user.id);
   }
 
   @Get()

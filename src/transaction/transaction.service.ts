@@ -29,7 +29,10 @@ export class TransactionService extends BaseService<Transaction> {
     super(transactionModel);
   }
 
-  async createTransaction(dto: CreateTransactionDto): Promise<void> {
+  async createTransaction(
+    dto: CreateTransactionDto,
+    userId: string,
+  ): Promise<void> {
     let transactionObj = {};
 
     switch (dto.type) {
@@ -68,6 +71,7 @@ export class TransactionService extends BaseService<Transaction> {
       type: dto.type,
       category: dto.category,
       createdAt: new Date(),
+      user: new ObjectId(userId),
     });
     await transaction.save();
   }
