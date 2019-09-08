@@ -1,7 +1,7 @@
 import { ApiResponseModelProperty } from '@nestjs/swagger';
-import { Account } from '../model/account.model';
 import { Currency } from '../../common/currencies';
 import { Group } from '../../group/model/group.model';
+import { Account } from '../model/account.model';
 
 export class AccountDetailsDto {
   @ApiResponseModelProperty()
@@ -22,6 +22,9 @@ export class AccountDetailsDto {
   @ApiResponseModelProperty({ type: String })
   currency: Currency;
 
+  @ApiResponseModelProperty()
+  transactionCount: number;
+
   constructor(entity: Account) {
     this.id = entity._id.toHexString();
     this.name = entity.name;
@@ -29,5 +32,6 @@ export class AccountDetailsDto {
     this.groupName = (entity.group as Group).name;
     this.balance = entity.balance;
     this.currency = entity.currency;
+    this.transactionCount = entity.transactionCount;
   }
 }

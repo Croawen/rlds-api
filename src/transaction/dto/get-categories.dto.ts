@@ -2,7 +2,7 @@ import { ApiResponseModelProperty } from '@nestjs/swagger';
 import { TransactionCategory } from '../enums/transaction-category.enum';
 
 export class GetCategoriesDto {
-  @ApiResponseModelProperty({ type: String })
+  @ApiResponseModelProperty({ type: [String] })
   categories: TransactionCategory[];
 
   constructor() {
