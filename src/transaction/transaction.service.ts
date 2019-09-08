@@ -3,6 +3,7 @@ import {
   HttpException,
   Inject,
   Injectable,
+  NotFoundException,
 } from '@nestjs/common';
 import { ObjectId } from 'bson';
 import { InjectModel } from 'nestjs-typegoose';
@@ -184,8 +185,14 @@ export class TransactionService extends BaseService<Transaction> {
   ): Promise<TransactionDetailsDto> {
     const transaction = await this.model.findOne({
       user: new ObjectId(userId),
-      _id: ObjectId.isValid(transactionId) ? new ObjectId(transactionId) : null,
+      _id: new ObjectId(transactionId),
     });
+
+    if (!transaction)
+      throw new NotFoundException(
+        'Transaction with provided id was not found.',
+      );
+
     return new TransactionDetailsDto(transaction);
   }
 }

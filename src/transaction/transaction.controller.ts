@@ -79,7 +79,7 @@ export class TransactionController {
   async getDetails(
     @CurrentUser() user: IUserPayload,
     @Param('transactionId') transactionId: string,
-  ) {
+  ): Promise<TransactionDetailsDto> {
     return this.transactionService.getTransaction(user.id, transactionId);
   }
 }
