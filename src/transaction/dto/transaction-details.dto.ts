@@ -37,7 +37,7 @@ export class TransactionDetailsDto {
     this.type = entity.type;
     this.category = entity.category;
     this.createdAt = entity.createdAt;
-    if (entity.sourceChange) {
+    if (entity.sourceAccount) {
       this.sourceAccount = ((entity.sourceAccount as unknown) as Account).name;
       this.sourceChange = entity.sourceChange;
     }
