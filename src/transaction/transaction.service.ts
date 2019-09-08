@@ -150,7 +150,7 @@ export class TransactionService extends BaseService<Transaction> {
     return {
       sourceAccount: sourceAccount._id,
       targetAccount: targetAccount._id,
-      sourceChange,
+      sourceChange: -sourceChange,
       targetChange,
     };
   }
