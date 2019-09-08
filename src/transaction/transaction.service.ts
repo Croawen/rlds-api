@@ -1,19 +1,19 @@
 import {
-  Injectable,
-  Inject,
   BadRequestException,
   HttpException,
+  Inject,
+  Injectable,
 } from '@nestjs/common';
-import { Transaction } from './model/transaction.model';
+import { ObjectId } from 'bson';
 import { InjectModel } from 'nestjs-typegoose';
 import { ModelType } from 'typegoose';
-import { CreateTransactionDto, TransactionListDto } from './dto';
-import { TransactionType } from './enums/transaction-type.enum';
-import { ObjectId } from 'bson';
-import { BaseService } from '../common/base.service';
 import { AccountService } from '../account/account.service';
+import { BaseService } from '../common/base.service';
 import { currencyRates } from '../common/currencies';
 import { PagerRequestDto } from '../common/pager';
+import { CreateTransactionDto, TransactionListDto } from './dto';
+import { TransactionType } from './enums/transaction-type.enum';
+import { Transaction } from './model/transaction.model';
 
 @Injectable()
 export class TransactionService extends BaseService<Transaction> {
@@ -61,6 +61,7 @@ export class TransactionService extends BaseService<Transaction> {
       ...transactionObj,
       title: dto.title,
       type: dto.type,
+      category: dto.category,
       createdAt: new Date(),
     });
     await transaction.save();

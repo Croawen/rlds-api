@@ -1,7 +1,8 @@
 import { ObjectId } from 'bson';
-import { prop, Typegoose, Ref } from 'typegoose';
-import { TransactionType } from '../enums/transaction-type.enum';
+import { prop, Ref, Typegoose } from 'typegoose';
 import { Account } from '../../account/model/account.model';
+import { TransactionCategory } from '../enums/transaction-category.enum';
+import { TransactionType } from '../enums/transaction-type.enum';
 
 export class Transaction extends Typegoose {
   _id: ObjectId;
@@ -11,6 +12,9 @@ export class Transaction extends Typegoose {
 
   @prop({ required: true, enum: TransactionType })
   type: TransactionType;
+
+  @prop({ required: true, enum: TransactionCategory })
+  category: TransactionCategory;
 
   @prop({ required: true })
   createdAt: Date;

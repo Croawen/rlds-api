@@ -1,11 +1,12 @@
 import { ApiModelProperty } from '@nestjs/swagger';
 import {
+  IsEnum,
   IsMongoId,
   IsNumber,
   IsString,
-  IsEnum,
   ValidateIf,
 } from 'class-validator';
+import { TransactionCategory } from '../enums/transaction-category.enum';
 import { TransactionType } from '../enums/transaction-type.enum';
 
 export class CreateTransactionDto {
@@ -16,6 +17,10 @@ export class CreateTransactionDto {
   @ApiModelProperty({ enum: Object.values(TransactionType) })
   @IsEnum(TransactionType)
   type: TransactionType;
+
+  @ApiModelProperty({ enum: Object.values(TransactionCategory) })
+  @IsEnum(TransactionCategory)
+  category: TransactionCategory;
 
   @ApiModelProperty()
   @IsMongoId()

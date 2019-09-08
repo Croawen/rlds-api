@@ -1,7 +1,8 @@
 import { ApiResponseModelProperty } from '@nestjs/swagger';
+import { Account } from '../../account/model/account.model';
+import { TransactionCategory } from '../enums/transaction-category.enum';
 import { TransactionType } from '../enums/transaction-type.enum';
 import { Transaction } from '../model/transaction.model';
-import { Account } from '../../account/model/account.model';
 
 export class TransactionListItemDto {
   @ApiResponseModelProperty()
@@ -12,6 +13,9 @@ export class TransactionListItemDto {
 
   @ApiResponseModelProperty({ type: String })
   type: TransactionType;
+
+  @ApiResponseModelProperty({ type: String })
+  category: TransactionCategory;
 
   @ApiResponseModelProperty()
   createdAt: Date;
@@ -32,6 +36,7 @@ export class TransactionListItemDto {
     this.id = entity._id.toHexString();
     this.title = entity.title;
     this.type = entity.type;
+    this.category = entity.category;
     this.createdAt = entity.createdAt;
     this.sourceAccount = entity.sourceAccount
       ? (entity.sourceAccount as Account).name

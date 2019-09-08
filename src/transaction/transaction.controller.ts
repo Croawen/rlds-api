@@ -1,28 +1,30 @@
 import {
+  Body,
   Controller,
+  Get,
   Inject,
   Post,
-  Body,
-  Get,
-  Param,
   Query,
   UseGuards,
 } from '@nestjs/common';
 import {
-  ApiUseTags,
-  ApiOperation,
-  ApiOkResponse,
   ApiBadRequestResponse,
-  ApiNotFoundResponse,
   ApiBearerAuth,
   ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiUseTags,
 } from '@nestjs/swagger';
-import { TransactionService } from './transaction.service';
-import { CreateTransactionDto, TransactionListDto } from './dto';
-import { JwtGuard } from '../auth/guards/jwt.guard';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 import { IUserPayload } from '../auth/interfaces/user.payload';
-import { ParsePagerRequestPipe, PagerRequestDto } from '../common/pager';
+import { PagerRequestDto, ParsePagerRequestPipe } from '../common/pager';
+import {
+  CreateTransactionDto,
+  GetCategoriesDto,
+  TransactionListDto,
+} from './dto';
+import { TransactionService } from './transaction.service';
 
 @Controller('transactions')
 @ApiUseTags('Transactions')
@@ -53,6 +55,16 @@ export class TransactionController {
     @Query(new ParsePagerRequestPipe()) query: PagerRequestDto,
   ): Promise<TransactionListDto> {
     return this.transactionService.getTransactions(user.id, query);
+  }
+
+  @Get('categories')
+  @ApiOperation({ title: 'Get transaction categories.' })
+  @ApiOkResponse({
+    type: GetCategoriesDto,
+    description: 'Get transaction categories response.',
+  })
+  async categories(): Promise<GetCategoriesDto> {
+    return new GetCategoriesDto();
   }
 
   //   @Get(':transactionId')
