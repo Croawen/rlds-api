@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Inject,
+  Param,
   Post,
   Query,
   UseGuards,
@@ -11,6 +12,7 @@ import {
   ApiBadRequestResponse,
   ApiBearerAuth,
   ApiCreatedResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
   ApiUseTags,
@@ -22,6 +24,7 @@ import { PagerRequestDto, ParsePagerRequestPipe } from '../common/pager';
 import {
   CreateTransactionDto,
   GetCategoriesDto,
+  TransactionDetailsDto,
   TransactionListDto,
 } from './dto';
 import { TransactionService } from './transaction.service';
@@ -67,19 +70,16 @@ export class TransactionController {
     return new GetCategoriesDto();
   }
 
-  //   @Get(':transactionId')
-  //   @ApiOperation({ title: 'Get transaction details.' })
-  //   @ApiOkResponse({ type: AccountDetailsDto })
-  //   @ApiNotFoundResponse({
-  //     description: 'Transaction with provided id was not found.',
-  //   })
-  //   async getDetails(
-  //     @CurrentUser() user: IUserPayload,
-  //     @Param('transactionId') transactionId: string,
-  //   ) {
-  //     return this.transactionService.getTransactionDetails(
-  //       user.id,
-  //       transactionId,
-  //     );
-  //   }
+  @Get(':transactionId')
+  @ApiOperation({ title: 'Get transaction details.' })
+  @ApiOkResponse({ type: TransactionDetailsDto })
+  @ApiNotFoundResponse({
+    description: 'Transaction with provided id was not found.',
+  })
+  async getDetails(
+    @CurrentUser() user: IUserPayload,
+    @Param('transactionId') transactionId: string,
+  ) {
+    return this.transactionService.getTransaction(user.id, transactionId);
+  }
 }

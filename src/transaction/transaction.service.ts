@@ -11,7 +11,11 @@ import { AccountService } from '../account/account.service';
 import { BaseService } from '../common/base.service';
 import { currencyRates } from '../common/currencies';
 import { PagerRequestDto } from '../common/pager';
-import { CreateTransactionDto, TransactionListDto } from './dto';
+import {
+  CreateTransactionDto,
+  TransactionDetailsDto,
+  TransactionListDto,
+} from './dto';
 import { TransactionType } from './enums/transaction-type.enum';
 import { Transaction } from './model/transaction.model';
 
@@ -172,5 +176,16 @@ export class TransactionService extends BaseService<Transaction> {
       pagerReq.pageSize,
       pagerReq.pageNumber,
     );
+  }
+
+  async getTransaction(
+    userId: string,
+    transactionId: string,
+  ): Promise<TransactionDetailsDto> {
+    const transaction = await this.model.findOne({
+      user: new ObjectId(userId),
+      _id: ObjectId.isValid(transactionId) ? new ObjectId(transactionId) : null,
+    });
+    return new TransactionDetailsDto(transaction);
   }
 }
