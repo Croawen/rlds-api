@@ -4,6 +4,7 @@ import {
   IsMongoId,
   IsNumber,
   IsString,
+  Min,
   ValidateIf,
 } from 'class-validator';
 import { TransactionCategory } from '../enums/transaction-category.enum';
@@ -40,6 +41,7 @@ export class CreateTransactionDto {
   targetAccount: string;
 
   @ApiModelProperty()
-  @IsNumber()
+  @IsNumber({ allowInfinity: false, allowNaN: false })
+  @Min(0.01)
   amount: number;
 }
