@@ -14,6 +14,6 @@ export class PagerResponseDto {
     this.pageNumber = pageNumber;
     this.pageSize = pageSize;
     this.totalItems = totalItems;
-    this.pageCount = Math.max(Math.round(totalItems / pageSize), 1);
+    this.pageCount = Math.ceil(totalItems / pageSize);
   }
 }
